@@ -9,14 +9,20 @@
     "web": "expo start --web"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
+=======
+    "@expo/metro-runtime": "~6.1.2",
+>>>>>>> efbafddacaa430061a4a7da8f8513e6edf5402f2
     "expo": "~54.0.12",
     "expo-status-bar": "~3.0.8",
     "express": "^5.1.0",
     "mongoose": "^8.19.1",
     "react": "19.1.0",
-    "react-native": "0.81.4"
+    "react-dom": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-web": "^0.21.0"
   },
   "private": true
 }

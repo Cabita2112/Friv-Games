@@ -9,8 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "expo": "~54.0.12",
     "expo-status-bar": "~3.0.8",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1",
     "react": "19.1.0",
     "react-native": "0.81.4"
   },

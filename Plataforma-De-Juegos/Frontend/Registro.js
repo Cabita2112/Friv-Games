@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    elevation: 6, // sombra en Android
+    elevation: 6, 
   },
   title: {
     fontSize: 26,

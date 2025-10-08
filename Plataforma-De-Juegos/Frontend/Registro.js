@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,7 +7,19 @@ import {
   StyleSheet,
 } from "react-native";
 
-export default function Registro() {
+export default function Registro({ navigation }) {
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email, setEmail] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [confirmarContrasena, setConfirmarContrasena] = useState("");
+
+  const manejarRegistro = () => {
+    // Aquí irá tu lógica de registro
+    console.log("Registrarse presionado");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.registerBox}>
@@ -17,12 +29,16 @@ export default function Registro() {
           style={styles.input}
           placeholder="Nombre"
           placeholderTextColor="#999"
+          value={nombre}
+          onChangeText={setNombre}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Apellido"
           placeholderTextColor="#999"
+          value={apellido}
+          onChangeText={setApellido}
         />
 
         <TextInput
@@ -30,12 +46,16 @@ export default function Registro() {
           placeholder="Correo electrónico"
           placeholderTextColor="#999"
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Usuario"
           placeholderTextColor="#999"
+          value={usuario}
+          onChangeText={setUsuario}
         />
 
         <TextInput
@@ -43,6 +63,8 @@ export default function Registro() {
           placeholder="Contraseña"
           placeholderTextColor="#999"
           secureTextEntry
+          value={contrasena}
+          onChangeText={setContrasena}
         />
 
         <TextInput
@@ -50,15 +72,20 @@ export default function Registro() {
           placeholder="Confirmar contraseña"
           placeholderTextColor="#999"
           secureTextEntry
+          value={confirmarContrasena}
+          onChangeText={setConfirmarContrasena}
         />
 
-        <TouchableOpacity style={styles.boton}>
+        <TouchableOpacity style={styles.boton} onPress={manejarRegistro}>
           <Text style={styles.textoBoton}>Registrarse</Text>
         </TouchableOpacity>
 
-        <Text style={styles.login}>
-          ¿Ya tienes cuenta? <Text style={styles.link}>Inicia sesión</Text>
-        </Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.login}>¿Ya tienes cuenta? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.link}>Inicia sesión</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -79,7 +106,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.15,
     shadowRadius: 6,
-    elevation: 6, 
+    elevation: 6,
   },
   title: {
     fontSize: 26,
@@ -109,14 +136,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  login: {
-    textAlign: "center",
+  loginContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 20,
+  },
+  login: {
     color: "#555",
     fontSize: 14,
   },
   link: {
     color: "#28A745",
     fontWeight: "bold",
+    fontSize: 14,
   },
 });

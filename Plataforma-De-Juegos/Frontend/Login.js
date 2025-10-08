@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,8 +7,15 @@ import {
   StyleSheet,
 } from "react-native";
 
+export default function Login({ navigation }) {
+  const [usuario, setUsuario] = useState("");
+  const [contrasena, setContrasena] = useState("");
 
-export default function App() {
+  const manejarLogin = () => {
+    // Aquí irá tu lógica de login
+    console.log("Login presionado");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.login}>
@@ -17,6 +25,8 @@ export default function App() {
           style={styles.input}
           placeholder="Usuario"
           placeholderTextColor="#999"
+          value={usuario}
+          onChangeText={setUsuario}
         />
 
         <TextInput
@@ -24,15 +34,20 @@ export default function App() {
           placeholder="Contraseña"
           placeholderTextColor="#999"
           secureTextEntry
+          value={contrasena}
+          onChangeText={setContrasena}
         />
 
-        <TouchableOpacity style={styles.boton}>
+        <TouchableOpacity style={styles.boton} onPress={manejarLogin}>
           <Text style={styles.textoBoton}>Ingresar</Text>
         </TouchableOpacity>
 
-        <Text style={styles.registro}>
-          ¿No tienes cuenta? <Text style={styles.link}>Regístrate</Text>
-        </Text>
+        <View style={styles.registroContainer}>
+          <Text style={styles.registro}>¿No tienes cuenta? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
+            <Text style={styles.link}>Regístrate</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -82,14 +97,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  registro: {
-    textAlign: "center",
+  registroContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 20,
+  },
+  registro: {
     color: "#555",
     fontSize: 14,
   },
   link: {
     color: "#007BFF",
     fontWeight: "bold",
+    fontSize: 14,
   },
 });

@@ -2,19 +2,18 @@
   "name": "plataforma-de-juegos",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "server": "node backend/server.js"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@expo/metro-runtime": "~6.1.2",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-=======
-    "@expo/metro-runtime": "~6.1.2",
->>>>>>> efbafddacaa430061a4a7da8f8513e6edf5402f2
     "expo": "~54.0.12",
     "expo-status-bar": "~3.0.8",
     "express": "^5.1.0",

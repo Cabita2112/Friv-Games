@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./Frontend/Login";
+import Registro from "./Frontend/Registro";
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Login></Login>
-    </View>
-  );
+  return <Registro></Registro>;
 }
 
 const styles = StyleSheet.create({

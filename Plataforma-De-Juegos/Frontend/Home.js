@@ -7,58 +7,62 @@ import {
   Image,
   Modal,
 } from "react-native";
-import { Entypo } from "@expo/vector-icons"; //importa los tres puntitos en el nadvar
+import { Entypo } from "@expo/vector-icons";
 
 export default function Home() {
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.navbar}>
-        <Text style={styles.logoText}>[LOGO]</Text>
+    <View style={styles.contenedor}>
 
-        <TouchableOpacity onPress={() => setMenuVisible(true)}>
+      <View style={styles.navbar}>
+        <Text style={styles.logo}>[LOGO]</Text>
+
+        <TouchableOpacity onPress={() => setMenuAbierto(true)}>
           <Entypo name="dots-three-vertical" size={22} color="#fff" />
         </TouchableOpacity>
       </View>
 
+
       <Modal
         transparent={true}
-        visible={menuVisible}
+        visible={menuAbierto}
         animationType="fade"
-        onRequestClose={() => setMenuVisible(false)}
+        onRequestClose={() => setMenuAbierto(false)}
       >
         <TouchableOpacity
-          style={styles.overlay}
+          style={styles.fondoOscuro}
           activeOpacity={1}
-          onPressOut={() => setMenuVisible(false)}
+          onPressOut={() => setMenuAbierto(false)}
         >
           <View style={styles.menu}>
-            <View style={styles.profileSection}>
+            <View style={styles.perfil}>
               <Image
                 source={{
                   uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
                 }}
-                style={styles.profileImage}
+                style={styles.fotoPerfil}
               />
-              <Text style={styles.profileName}>Nombre Apellido</Text>
+              <Text style={styles.nombre}>Nombre Apellido</Text>
             </View>
 
-            <View style={styles.line} />
-            <TouchableOpacity style={styles.menuOption}>
-              <Text style={styles.menuText}>Mis Juegos</Text>
+            <View style={styles.linea} />
+
+            <TouchableOpacity style={styles.opcion}>
+              <Text style={styles.textoOpcion}>Mis Juegos</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuOption}>
-              <Text style={styles.menuText}>Configuración</Text>
+            <TouchableOpacity style={styles.opcion}>
+              <Text style={styles.textoOpcion}>Configuración</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuOption}>
-              <Text style={styles.menuText}>Estadísticas</Text>
+            <TouchableOpacity style={styles.opcion}>
+              <Text style={styles.textoOpcion}>Estadísticas</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuOption}>
-              <Text style={[styles.menuText, { color: "#d00" }]}>
+            <TouchableOpacity style={styles.opcion}>
+              <Text style={[styles.textoOpcion, { color: "#d00" }]}>
                 Cerrar Sesión
               </Text>
             </TouchableOpacity>
@@ -66,15 +70,36 @@ export default function Home() {
         </TouchableOpacity>
       </Modal>
 
-      <View style={styles.body}>
-        <Text style={styles.welcome}>Bienvenido a la plataforma 🎮</Text>
+      <View style={styles.cuerpo}>
+
+        <TouchableOpacity
+          style={styles.cuadroJuego}
+          onPress={() => setMostrarMensaje(true)}
+        >
+
+          <Text style={styles.tituloJuego}>🎯 Juego: Laberinto</Text>
+
+          <Image
+            source={require("../img/laberinto.jpg")}
+            style={styles.imagen}
+          />
+        </TouchableOpacity>
+
+        <Text style={styles.bienvenida}>Bienvenido a la plataforma 🎮</Text>
+
+ 
+        {mostrarMensaje && (
+          <View style={styles.cuadroMensaje}>
+            <Text style={styles.mensaje}>🚧 PRÓXIMAMENTE 🚧</Text>
+          </View>
+        )}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contenedor: {
     flex: 1,
     backgroundColor: "#F3F4F6",
   },
@@ -87,12 +112,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     elevation: 4,
   },
-  logoText: {
+  logo: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
   },
-  overlay: {
+  fondoOscuro: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.3)",
     justifyContent: "flex-start",
@@ -110,42 +135,86 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 8,
   },
-  profileSection: {
+  perfil: {
     alignItems: "center",
     marginBottom: 10,
   },
-  profileImage: {
+  fotoPerfil: {
     width: 70,
     height: 70,
     borderRadius: 35,
     marginBottom: 8,
   },
-  profileName: {
+  nombre: {
     fontSize: 16,
     fontWeight: "600",
     color: "#333",
   },
-  line: {
+  linea: {
     height: 1,
     backgroundColor: "#eee",
     marginVertical: 8,
   },
-  menuOption: {
+  opcion: {
     paddingVertical: 10,
     paddingHorizontal: 15,
   },
-  menuText: {
+  textoOpcion: {
     fontSize: 15,
     color: "#333",
   },
-  body: {
+  cuerpo: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  welcome: {
+  bienvenida: {
     fontSize: 18,
     color: "#333",
     fontWeight: "600",
+    marginBottom: 10,
+  },
+
+  
+  cuadroJuego: {
+    position: "absolute",
+    left: 20,
+    top: "20%", 
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: "#007BFF",
+    padding: 10,
+    elevation: 8,
+    alignItems: "center",
+  },
+  tituloJuego: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#007BFF",
+    marginBottom: 6,
+  },
+  imagen: {
+    width: 140, 
+    height: 140,
+    borderRadius: 10,
+  },
+
+ 
+  cuadroMensaje: {
+    borderWidth: 3,
+    borderColor: "#007BFF",
+    borderRadius: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    marginTop: 25,
+    backgroundColor: "#EAF2FF",
+    elevation: 5,
+  },
+  mensaje: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#007BFF",
+    textAlign: "center",
   },
 });
